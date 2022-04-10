@@ -8,7 +8,7 @@ for i in samples/*
 do
   echo "Testing $i"
   n=$(basename $i)
-  helm template test . --values $i > tests/$n
+  helm template test . --values $i |egrep -v '^ +helm.sh/chart:' > tests/$n
   diff -u results/$n tests/$n
   echo "OK"
 done

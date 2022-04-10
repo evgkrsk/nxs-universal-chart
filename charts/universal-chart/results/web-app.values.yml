@@ -8,7 +8,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
 spec:
@@ -32,7 +31,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:    
 spec:
@@ -116,7 +114,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:    
     kubernetes.io/tls-acme: "true"
@@ -150,7 +147,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
@@ -171,7 +167,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
@@ -190,7 +185,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
@@ -209,7 +203,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
@@ -227,7 +220,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
@@ -248,7 +240,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
@@ -272,7 +263,6 @@ metadata:
   labels:
     app.kubernetes.io/name: test
     app.kubernetes.io/instance: test
-    helm.sh/chart: universal-chart-2.0.0
     app.kubernetes.io/managed-by: Helm
   annotations:
     helm.sh/hook: "pre-install,pre-upgrade"
