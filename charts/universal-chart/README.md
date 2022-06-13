@@ -424,25 +424,50 @@ Secret `data` object is a map where value can be a string, json or base64 encode
 
 `hpas` is map of HPA parameters, where key is a name
 
-| Name             | Description                                                             | Value                   |
-|------------------|-------------------------------------------------------------------------|-------------------------|
-| `labels`         | Extra HPA labels                                                        | `{}`                    |
-| `annotations`    | Extra HPA annotations                                                   | `{}`                    |
-| `apiVersion`     | apiVersion for HPA object                                               | `"autoscaling/v2beta1"` |
-| `minReplicas`    | minimum replicas for HPA                                                | `2`                     |
-| `maxReplicas`    | maximum replicas for HPA                                                | `3`                     |
-| `scaleTargetRef` | Required [scaleTargetRef](#hpa-scaletargetref-object-parameters) object |                         |
-| `targetCPU`      | target CPU utilization percentage                                       | `""`                    |
-| `targetMemory`   | target memory utilization percentage                                    | `""`                    |
-| `metrics`        | list of custom metrics                                                  | `[]`                        |
+| Name             | Description                                                               | Value                   |
+|------------------|---------------------------------------------------------------------------|-------------------------|
+| `labels`         | Extra HPA labels                                                          | `{}`                    |
+| `annotations`    | Extra HPA annotations                                                     | `{}`                    |
+| `apiVersion`     | apiVersion for HPA object                                                 | `"autoscaling/v2beta1"` |
+| `minReplicas`    | minimum replicas for HPA                                                  | `2`                     |
+| `maxReplicas`    | maximum replicas for HPA                                                  | `3`                     |
+| `scaleTargetRef` | (REQUIRED) [scaleTargetRef](#hpa-scaletargetref-object-parameters) object |                         |
+| `targetCPU`      | target CPU utilization percentage                                         | `""`                    |
+| `targetMemory`   | target memory utilization percentage                                      | `""`                    |
+| `metrics`        | list of custom metrics                                                    | `[]`                    |
 
 ### HPA `scaleTargetRef` object parameters
 
-| Name       | Description                      | Value        |
-|------------|----------------------------------|--------------|
-| apiVersion | apiVersion for target HPA object | "apps/v1"    |
-| kind       | kind for target HPA object       | "Deployment" |
-| name       | Required name of target object   | ""           |
+| Name         | Description                      | Value        |
+|--------------|----------------------------------|--------------|
+| `apiVersion` | apiVersion for target HPA object | "apps/v1"    |
+| `kind`       | kind for target HPA object       | "Deployment" |
+| `name`       | (REQUIRED) name of target object | ""           |
+
+### PrometheusRule parameters
+
+`prometheusrules` is map of PrometheusRule-s, where key is a name
+
+| Name     | Description                                                                                         | Value |
+|----------|-----------------------------------------------------------------------------------------------------|-------|
+| `labels` | Extra PrometheusRule labels                                                                         | `{}`  |
+| `groups` | (REQUIRED) map of [PrometheusRuleGroup](#prometheusrulegroup-object-parameters) where key is a name | `{}`  |
+
+### PrometheusRuleGroup object parameters
+
+| Name       | Description                                                  | Value |
+|------------|--------------------------------------------------------------|-------|
+| `interval` | period check for alerts                                      | `5m`  |
+| `rules`    | map of [Alert](#alert-object-parameters) where key is a name | `{}`  |
+
+### Alert object parameters
+
+| Name          | Description                  | Value |
+|---------------|------------------------------|-------|
+| `expr`        | (REQUIRED) PromQL expression | `""`  |
+| `for`         | Duration for alert           | `5m`  |
+| `labels`      | Map of rule labels           | `{}`  |
+| `annotations` | Map of rule annotations      | `{}`  |
 
 ## Configuration and installation details
 

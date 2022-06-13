@@ -8,7 +8,7 @@ for filename in "$dirname"/samples/*
 do
   echo "Testing $filename"
   basename=$(basename "$filename")
-  helm template test "$dirname" --values "$filename" |grep -Ev '^ +helm.sh/chart:' > "$tests"/"$basename"
+  helm --kube-context="notexisting" template test "$dirname" --values "$filename" |grep -Ev '^ +helm.sh/chart:' > "$tests"/"$basename"
   diff -u "$dirname"/results/"$basename" "$tests"/"$basename"
   echo "OK"
 done

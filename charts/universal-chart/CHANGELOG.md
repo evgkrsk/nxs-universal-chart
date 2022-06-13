@@ -1,4 +1,7 @@
 # Changelog
+## 3.3.0 - Jun 13, 2022
+* feat: add PrometheusRule support and tests
+
 ## 3.2.0 - May 2, 2022
 
 * feat: add HPA support and tests

@@ -1,0 +1,31 @@
+{{- range $name, $rule := .Values.prometheusrules }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "helpers.app.fullname" (dict "name" $name "context" $) }}
+  namespace: {{ $.Release.Namespace | quote }}
+  labels:
+    {{- include "helpers.app.labels" $ | nindent 4 }}
+    {{- with .labels }}{{- include "helpers.tplvalues.render" (dict "value" . "context" $) | nindent 4 }}{{- end }}
+spec:
+  groups:
+  {{- range $gname, $group := $rule.groups }}
+  - name: {{ $gname | quote }}
+    interval: {{ .interval }}
+    rules:
+      {{- range $aname, $alert := .rules }}
+    - alert: {{ $aname | quote }}
+      expr: {{ .expr }}
+      for: {{ .for }}
+      labels:
+      {{- range $key, $value := .labels }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      annotations:
+      {{- range $key, $value := .annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

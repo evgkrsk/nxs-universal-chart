@@ -260,6 +260,23 @@ servicemonitors: {}
   #   labels:
   #     foo: foo
 
+prometheusrules: {}
+  # promrule:
+  #   labels:
+  #     foo: bar
+  #   groups:
+  #     job_rules:
+  #       interval: 1m
+  #       rules:
+  #         RedisDown:
+  #           expr: redis_up == 0
+  #           for: 2m
+  #           labels:
+  #             severity: critical
+  #           annotations:
+  #             summary: Redis instance "{{ $labels.instance }}" down
+  #             description: Redis instance "{{ $labels.instance }}" is down.
+
 diagnosticMode:
   enabled: false
   command: ["sleep"]
