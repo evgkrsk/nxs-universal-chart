@@ -1,17 +1,14 @@
 #!/bin/sh -eu
-dname=$(dirname $0)
-tests="$dname/tests"
-rm -rf --one-file-system $tests
-mkdir -p $tests
-echo "Testing defaults"
-helm template test $dname > $tests/default.yaml
-diff -u $dname/results/default.yaml $tests/default.yaml
-echo "OK"
-for i in $dname/samples/*
+dirname=$(dirname "$0")
+tests="$dirname/tests"
+rm -rf --one-file-system "$tests"
+mkdir -p "$tests"
+
+for filename in "$dirname"/samples/*
 do
-  echo "Testing $i"
-  n=$(basename $i)
-  helm template test $dname --values $i |egrep -v '^ +helm.sh/chart:' > $tests/$n
-  diff -u $dname/results/$n $tests/$n
+  echo "Testing $filename"
+  basename=$(basename "$filename")
+  helm template test "$dirname" --values "$filename" |grep -Ev '^ +helm.sh/chart:' > "$tests"/"$basename"
+  diff -u "$dirname"/results/"$basename" "$tests"/"$basename"
   echo "OK"
 done
