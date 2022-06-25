@@ -20,3 +20,48 @@ spec:
       app.kubernetes.io/name: test
       app.kubernetes.io/instance: test
       app: nginx
+---
+# Source: universal-chart/templates/servicemonitor.yml
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: test-sm2
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/managed-by: Helm
+spec:
+  endpoints:
+    - interval: 30s
+      path: /metrics
+      port: exporter
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+      app.kubernetes.io/instance: test
+  namespaceSelector:
+    any: true
+---
+# Source: universal-chart/templates/servicemonitor.yml
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: test-sm3
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/managed-by: Helm
+spec:
+  endpoints:
+    - interval: 30s
+      path: /metrics
+      port: exporter
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+      app.kubernetes.io/instance: test
+  namespaceSelector:
+    matchNames:
+    - production

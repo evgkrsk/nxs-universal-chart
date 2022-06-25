@@ -394,11 +394,12 @@ Secret `data` object is a map where value can be a string, json or base64 encode
 
 `servicemonitors` is a map of the ServiceMonitor parameters, where key is a name.
 
-| Name                  | Description                              | Value |
-|-----------------------|------------------------------------------|-------|
-| `labels`              | Extra ServiceMonitor labels              | `{}`  |
-| `endpoints`           | Array of ServiceMonitor endpoints        | `[]`  |
-| `extraSelectorLabels` | Extra selectorLabels for select workload | `{}`  |
+| Name                  | Description                                  | Value |
+|-----------------------|----------------------------------------------|-------|
+| `labels`              | Extra ServiceMonitor labels                  | `{}`  |
+| `endpoints`           | (REQUIRED) Array of ServiceMonitor endpoints | `[]`  |
+| `extraSelectorLabels` | Extra selectorLabels for select workload     | `{}`  |
+| `namespaceSelector`   | Extra namespaceSelector for ServiceMonitor   | `{}`  |
 
 ### typed Volumes parameters
 
