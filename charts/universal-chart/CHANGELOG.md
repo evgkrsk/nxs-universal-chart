@@ -1,4 +1,7 @@
 # Changelog
+## 3.4.0 - Jun 25, 2022
+* feat: optional namespaceSelector for servicemonitors
+
 ## 3.3.0 - Jun 13, 2022
 * feat: add PrometheusRule support and tests
 

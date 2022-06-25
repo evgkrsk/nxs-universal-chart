@@ -8,3 +8,18 @@ servicemonitors:
       app: nginx
     labels:
       foo: foo
+  sm2:
+    endpoints:
+    - interval: 30s
+      port: exporter
+      path: /metrics
+    namespaceSelector:
+      any: true
+  sm3:
+    endpoints:
+    - interval: 30s
+      port: exporter
+      path: /metrics
+    namespaceSelector:
+      matchNames:
+        - production
