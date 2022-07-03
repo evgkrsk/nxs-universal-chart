@@ -1,4 +1,10 @@
 # Changelog
+## 3.4.1 - Jul 3, 2022
+* fix: bool variables quoting in configmaps
+* fix: set up valid default schedule for cronjobs
+* fix: validate all samples
+* fix: lowercase some Kind's names
+
 ## 3.4.0 - Jun 25, 2022
 * feat: optional namespaceSelector for servicemonitors
 

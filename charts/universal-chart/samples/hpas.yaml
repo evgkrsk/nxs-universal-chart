@@ -1,5 +1,5 @@
 hpas:
-  hpa0:
+  HPA0:
     scaleTargetRef:
       name: dep
     targetCPU: 50

@@ -3,6 +3,25 @@
 kind: PodDisruptionBudget
 apiVersion: policy/v1
 metadata:
+  name: test-PDB2
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/managed-by: Helm
+    bar: foo
+spec:
+  maxUnavailable: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+      app.kubernetes.io/instance: test
+      bar: foo
+---
+# Source: universal-chart/templates/pdb.yaml
+kind: PodDisruptionBudget
+apiVersion: policy/v1
+metadata:
   name: test-pdb1
   namespace: "default"
   labels:
@@ -17,22 +36,3 @@ spec:
       app.kubernetes.io/name: test
       app.kubernetes.io/instance: test
       foo: bar
----
-# Source: universal-chart/templates/pdb.yaml
-kind: PodDisruptionBudget
-apiVersion: policy/v1
-metadata:
-  name: test-pdb2
-  namespace: "default"
-  labels:
-    app.kubernetes.io/name: test
-    app.kubernetes.io/instance: test
-    app.kubernetes.io/managed-by: Helm
-    bar: foo
-spec:
-  maxUnavailable: 2
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: test
-      app.kubernetes.io/instance: test
-      bar: foo

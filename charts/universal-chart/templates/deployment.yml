@@ -5,7 +5,7 @@
 apiVersion: {{ include "helpers.capabilities.deployment.apiVersion" $ }}
 kind: Deployment
 metadata:
-  name: {{ include "helpers.app.fullname" (dict "name" $name "context" $) }}
+  name: {{ include "helpers.app.fullname" (dict "name" (lower $name) "context" $) }}
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "helpers.app.labels" $ | nindent 4 }}
@@ -79,7 +79,7 @@ spec:
       {{- with .initContainers}}
       initContainers:
       {{- range . }}
-      - name: {{ .name | default (printf "%s-init-%s" $name (randAlphaNum 5)) }}
+      - name: {{ (lower .name) | default (printf "%s-init-%s" $name (lower (randAlphaNum 5))) }}
         image: {{ .image | default $.Values.defaultImage }}:{{ .imageTag | default  $.Values.defaultImageTag }}
         imagePullPolicy: {{ .imagePullPolicy | default $.Values.defaultImagePullPolicy }}
         {{- with .containerSecurityContext }}
@@ -120,7 +120,7 @@ spec:
       {{- end }}{{- end }}
       containers:
       {{- range .containers }}
-      - name: {{ .name | default (printf "%s-%s" $name (randAlphaNum 5)) }}
+      - name: {{ (lower .name) | default (printf "%s-%s" $name (lower (randAlphaNum 5))) }}
         image: {{ .image | default $.Values.defaultImage }}:{{ .imageTag | default  $.Values.defaultImageTag }}
         imagePullPolicy: {{ .imagePullPolicy | default $.Values.defaultImagePullPolicy }}
         {{- with .containerSecurityContext }}

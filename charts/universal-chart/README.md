@@ -224,6 +224,8 @@ Secret `data` object is a map where value can be a string, json or base64 encode
 | `annotations`      | Extra ConfigMap annotations                     | `{}`      |
 | `data`             | Map of ConfigMap data                           | `{}`      |
 
+N.B.: boolean values in `data` MUST be quoted
+
 ### PersistentVolumeClaims parameters
 
 `pvcs` is a map of the PersistentVolumeClaim parameters, where key is a name of PersistentVolumeClaim.
@@ -366,6 +368,7 @@ Secret `data` object is a map where value can be a string, json or base64 encode
 | `labels`                     | Extra CronJob labels                                                                    | `{}`      |
 | `annotations`                | Extra CronJob annotations                                                               | `{}`      |
 | `singleOnly`                 | Forbid concurrency policy                                                               | `"false"` |
+| `schedule`                   | Schedule in Cron format, see https://en.wikipedia.org/wiki/Cron                         | `""`      |
 | `startingDeadlineSeconds`    | Duration for starting CronJob                                                           | ``        |
 | `successfulJobsHistoryLimit` | Limitation of completed jobs should be kept                                             | `3`       |
 | `failedJobsHistoryLimit`     | Limitation of failed jobs should be kept                                                | `1`       |

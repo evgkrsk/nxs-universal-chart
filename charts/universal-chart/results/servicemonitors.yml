@@ -3,6 +3,29 @@
 kind: ServiceMonitor
 apiVersion: monitoring.coreos.com/v1
 metadata:
+  name: test-sm3
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/managed-by: Helm
+spec:
+  endpoints:
+    - interval: 30s
+      path: /metrics
+      port: exporter
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+      app.kubernetes.io/instance: test
+  namespaceSelector:
+    matchNames:
+    - production
+---
+# Source: universal-chart/templates/servicemonitor.yml
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
   name: test-mysm
   namespace: "default"
   labels:
@@ -42,26 +65,3 @@ spec:
       app.kubernetes.io/instance: test
   namespaceSelector:
     any: true
----
-# Source: universal-chart/templates/servicemonitor.yml
-kind: ServiceMonitor
-apiVersion: monitoring.coreos.com/v1
-metadata:
-  name: test-sm3
-  namespace: "default"
-  labels:
-    app.kubernetes.io/name: test
-    app.kubernetes.io/instance: test
-    app.kubernetes.io/managed-by: Helm
-spec:
-  endpoints:
-    - interval: 30s
-      path: /metrics
-      port: exporter
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: test
-      app.kubernetes.io/instance: test
-  namespaceSelector:
-    matchNames:
-    - production
