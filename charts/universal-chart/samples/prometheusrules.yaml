@@ -1,5 +1,5 @@
 prometheusrules:
-  promrule:
+  PROMRULE:
     labels:
       foo: bar
     groups:

@@ -6,7 +6,7 @@ pdbs:
     maxUnavailable: 2
     extraSelectorLabels:
       foo: bar
-  pdb2:
+  PDB2:
     labels:
       bar: foo
     maxUnavailable: 2

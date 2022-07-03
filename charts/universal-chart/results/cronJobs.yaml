@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:    
 spec:
-  schedule: "null"
+  schedule: "*/60 * * * *"
   jobTemplate:
     spec:
       template:
@@ -75,7 +75,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:    
 spec:
-  schedule: "null"
+  schedule: "*/60 * * * *"
   jobTemplate:
     spec:
       template:
@@ -109,25 +109,8 @@ spec:
                   topologyKey: kubernetes.io/hostname
                 weight: 1
           securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - AUDIT_WRITE
-              - CHOWN
-              - DAC_OVERRIDE
-              - FOWNER
-              - FSETID
-              - KILL
-              - MKNOD
-              - NET_ADMIN
-              - NET_BIND_SERVICE
-              - NET_RAW
-              - SETFCAP
-              - SETGID
-              - SETPCAP
-              - SETUID
-              - SYS_CHROOT
-            readOnlyRootFilesystem: false
+            fsGroup: 1000
+            runAsGroup: 1000
             runAsNonRoot: true
             runAsUser: 1000
           

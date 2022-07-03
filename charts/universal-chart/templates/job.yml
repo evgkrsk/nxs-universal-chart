@@ -1,6 +1,6 @@
 {{- $general := $.Values.jobsGeneral -}}
 {{- range $name, $job := .Values.jobs }}
-{{- $jobName := include "helpers.app.fullname" (dict "name" $name "context" $) }}
+{{- $jobName := lower (include "helpers.app.fullname" (dict "name" $name "context" $)) }}
 {{- if .commandDurationAlert }}
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -115,7 +115,7 @@ spec:
       {{- with .initContainers}}
       initContainers:
       {{- range . }}
-      - name: {{ .name | default $name }}
+      - name: {{ lower (.name | default $name) }}
         image: {{ .image | default $.Values.defaultImage }}:{{ .imageTag | default  $.Values.defaultImageTag }}
         imagePullPolicy: {{ .imagePullPolicy | default $.Values.defaultImagePullPolicy }}
         {{- with .containerSecurityContext }}
@@ -161,7 +161,7 @@ spec:
       {{- if .containers -}}{{- $containers = .containers -}}{{- else -}}{{- $containers = append list . -}}{{- end }}
       containers:
       {{- range $containers }}
-      - name: {{ .name | default $name }}
+      - name: {{ lower (.name | default $name) }}
         image: {{ .image | default $.Values.defaultImage }}:{{ .imageTag | default  $.Values.defaultImageTag }}
         imagePullPolicy: {{ .imagePullPolicy | default $.Values.defaultImagePullPolicy }}
         {{- with .containerSecurityContext }}

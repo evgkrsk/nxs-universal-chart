@@ -1,6 +1,6 @@
 {{- $general := $.Values.cronJobsGeneral -}}
 {{- range $name, $job := .Values.cronJobs }}
-{{- $cjName := include "helpers.app.fullname" (dict "name" $name "context" $) }}
+{{- $cjName := lower (include "helpers.app.fullname" (dict "name" $name "context" $)) }}
 {{- if .commandDurationAlert }}
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -39,7 +39,11 @@ metadata:
     {{- with $general.annotations }}{{- include "helpers.tplvalues.render" (dict "value" . "context" $) | nindent 4 }}{{- end }}
     {{- with .annotations }}{{- include "helpers.tplvalues.render" (dict "value" . "context" $) | nindent 4 }}{{- end }}
 spec:
+  {{- if .schedule }}
   schedule: {{ include "helpers.tplvalues.render" (dict "value" .schedule "context" $) | quote }}
+  {{- else }}
+  schedule: "*/60 * * * *"
+  {{- end }}
   {{- if .singleOnly }}
   concurrencyPolicy: Forbid
   {{- end }}
@@ -184,7 +188,7 @@ spec:
           {{- if .containers -}}{{- $containers = .containers -}}{{- else -}}{{- $containers = append list . -}}{{- end }}
           containers:
           {{- range $containers }}
-          - name: {{ .name | default $name }}
+          - name: {{ lower (.name | default $name) }}
             image: {{ .image | default $.Values.defaultImage }}:{{ .imageTag | default  $.Values.defaultImageTag }}
             imagePullPolicy: {{ .imagePullPolicy | default $.Values.defaultImagePullPolicy }}
             {{- with .containerSecurityContext }}

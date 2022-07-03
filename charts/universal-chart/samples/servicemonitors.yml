@@ -15,7 +15,7 @@ servicemonitors:
       path: /metrics
     namespaceSelector:
       any: true
-  sm3:
+  SM3:
     endpoints:
     - interval: 30s
       port: exporter

@@ -269,9 +269,9 @@ metadata:
     helm.sh/hook-delete-policy: before-hook-creation
 data:  
   BAR: foo
-  TEST: true  
+  TEST: "true"  
   BAR2: foo2
-  TEST2: false
+  TEST2: "false"
 ---
 # Source: universal-chart/templates/configmap.yml
 apiVersion: v1

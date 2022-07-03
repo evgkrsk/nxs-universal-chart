@@ -20,9 +20,9 @@ secretEnvs:
   DB_PASSWORD: password
 
 deployments:
-  api:
+  API:
     containers:
-    - name: api
+    - name: API
       envSecrets:
       - secret-envs
       envConfigmaps:

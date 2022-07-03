@@ -1,0 +1,32 @@
+envs:
+  TEST1: "False"
+  TEST2: "True"
+  TEST3: "false"
+  TEST4: "true"
+  TEST5: False
+  TEST6: True
+  TEST7: false
+  TEST8: true
+
+envsString: |
+  TEST9: "False"
+  TEST10: "True"
+  TEST11: "false"
+  TEST12: "true"
+  TEST13: False
+  TEST14: True
+  TEST15: false
+  TEST16: true
+
+configMaps:
+  ENV:
+    data:
+      TEST17: "False"
+      TEST18: "True"
+      TEST19: "false"
+      TEST20: "true"
+      # invalid values:
+      # TEST21: False
+      # TEST22: True
+      # TEST23: false
+      # TEST24: true
