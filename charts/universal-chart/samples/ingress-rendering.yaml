@@ -1,0 +1,26 @@
+defaultURL: "api.dev2.somedomain.ru"
+
+deployments:
+  someApi:
+    replicas: 1
+    containers:
+    - name: some-api
+      ports:
+      - name: http
+        containerPort: 1337
+      env:
+        - name: PUBLIC_URL
+          value: 'https://{{ .Values.defaultURL }}'
+
+ingresses:
+  someApiIngress:
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    certManager:
+      issuerType: cluster-issuer
+      issuerName: letsencrypt
+    hosts:
+    - hostname: '{{ .Values.defaultURL }}'
+      paths:
+      - serviceName: some-api-svc
+        servicePort: http

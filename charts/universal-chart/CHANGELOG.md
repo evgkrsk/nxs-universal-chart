@@ -1,4 +1,7 @@
 # Changelog
+## 3.4.2 - Jul 16, 2022
+* fix: add values templating in ingresses
+
 ## 3.4.1 - Jul 3, 2022
 * fix: bool variables quoting in configmaps
 * fix: set up valid default schedule for cronjobs
