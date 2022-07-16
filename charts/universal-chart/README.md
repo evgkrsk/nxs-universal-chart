@@ -571,3 +571,10 @@ or
 ```bash
 --set-file "secrets.json-file.data.file\.json=path/to/file.json"
 ```
+
+### Values Templating features
+
+You can use go-templates as part of your values.
+
+> **Note**
+> Use single quotes to escape strings containing templates to avoid manifest generation errors.

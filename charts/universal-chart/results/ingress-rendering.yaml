@@ -1,0 +1,97 @@
+---
+# Source: universal-chart/templates/deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-someapi
+  namespace: default
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/managed-by: Helm
+  annotations:    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+      app.kubernetes.io/instance: test
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: test
+        app.kubernetes.io/instance: test
+      annotations:
+    spec:
+      affinity:
+        nodeAffinity:
+          {}
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: test
+                  app.kubernetes.io/instance: test
+              namespaces:
+              - "default"
+              topologyKey: kubernetes.io/hostname
+            weight: 1
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: test
+                  app.kubernetes.io/instance: test
+              namespaces:
+              - "default"
+              topologyKey: kubernetes.io/hostname
+            weight: 1
+      
+      containers:
+      - name: some-api
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent        
+        env:
+        - name: PUBLIC_URL
+          value: https://api.dev2.somedomain.ru        
+        ports:
+        - containerPort: 1337
+          name: http
+        volumeMounts:
+        
+          []
+      volumes:      
+        []
+---
+# Source: universal-chart/templates/ingress.yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-someApiIngress
+  namespace: "default"
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/managed-by: Helm
+  annotations:    
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: api.dev2.somedomain.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: test-some-api-svc
+            port:
+              name: http
+  tls:
+  - hosts:
+    - api.dev2.somedomain.ru
+    secretName: test-someApiIngress-tls
