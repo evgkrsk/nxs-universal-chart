@@ -179,6 +179,9 @@ spec:
             {{- with .readinessProbe }}
             readinessProbe: {{- include "helpers.tplvalues.render" ( dict "value" . "context" $) | nindent 14 }}
             {{- end }}
+            {{- with .startupProbe }}
+            startupProbe: {{- include "helpers.tplvalues.render" ( dict "value" . "context" $) | nindent 14 }}
+            {{- end }}
             {{- with .resources }}
             resources: {{- include "helpers.tplvalues.render" ( dict "value" . "context" $) | nindent 14 }}
             {{- end }}
@@ -224,6 +227,9 @@ spec:
             {{- end }}
             {{- with .readinessProbe }}
             readinessProbe: {{- include "helpers.tplvalues.render" ( dict "value" . "context" $) | nindent 14 }}
+            {{- end }}
+            {{- with .startupProbe }}
+            startupProbe: {{- include "helpers.tplvalues.render" ( dict "value" . "context" $) | nindent 14 }}
             {{- end }}
             {{- with .resources }}
             resources: {{- include "helpers.tplvalues.render" ( dict "value" . "context" $) | nindent 14 }}

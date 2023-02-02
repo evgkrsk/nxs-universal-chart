@@ -118,6 +118,12 @@ spec:
             name: test-envs
         - secretRef:
             name: test-secret-envs
+        startupProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /health
+            port: liveness-port
+          periodSeconds: 10
         volumeMounts:
         - mountPath: /var/lib/secret
           name: secret-files

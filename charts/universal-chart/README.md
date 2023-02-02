@@ -139,6 +139,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `lifecycle`                | Containers lifecycle hooks                                            | `{}`             |
 | `livenessProbe`            | Liveness probe object for container                                   | `{}`             |
 | `readinessProbe`           | Readiness probe object for container                                  | `{}`             |
+| `startupProbe`             | Startup probe object for container                                    | `{}`             |
 | `resources`                | The resources requests and limits for container                       | `{}`             |
 | `volumeMounts`             | Array of the volume mounts                                            | `[]`             |
 

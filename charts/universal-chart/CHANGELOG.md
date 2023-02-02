@@ -1,4 +1,8 @@
 # Changelog
+## 3.5.0
+* feat: add startupProbe support
+* Add tests for all probe types
+
 ## 3.4.2 - Jul 16, 2022
 * fix: add values templating in ingresses
 
