@@ -81,6 +81,12 @@ deployments:
         mountPath: /etc/nginx/nginx.conf
         subPath: nginx.conf
       name: test
+      startupProbe:
+        httpGet:
+          path: /health
+          port: liveness-port
+        failureThreshold: 30
+        periodSeconds: 10
       containerSecurityContext:
         capabilities:
           drop: # ref: https://raw.githubusercontent.com/FairwindsOps/polaris/master/checks/insecureCapabilities.yaml

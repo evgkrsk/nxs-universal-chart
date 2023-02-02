@@ -59,6 +59,11 @@ spec:
         ports:
         - containerPort: 1337
           name: http
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          tcpSocket:
+            port: 1337
         volumeMounts:
         
           []

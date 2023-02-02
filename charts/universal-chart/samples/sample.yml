@@ -23,6 +23,10 @@ deployments:
   API:
     containers:
     - name: API
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: http
       envSecrets:
       - secret-envs
       envConfigmaps:
